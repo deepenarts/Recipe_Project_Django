@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block body %}
+<h1 class="heading m-4 text-center">Our Recipes </h1>
+
+<hr>
+        <div class=" container mt-4 p-4">
+            <form class="searching">
+                <div class="mb-3">
+                  <label for = "exampleInput">Search food </label>
+                  <input type = "text" name="search">
+                </div>
+                <button type = "submit" class="btn btn-primary">Search </button>
+              </form>
+              <hr>   
+            <table class="table table-bordered table-success table-striped mt-4 mx-auto mb-4">
+                <h2>Recipes</h2>
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Recipe</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Image</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {%for recipe in recipes%}
+                    <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>{{recipe.recipe_name}}</td>
+                        <td>{{recipe.recipe_description}}</td>
+                        <td>
+                          <img src = "/media/{{recipe.recipe_image}}" style="height:100px">
+                        </td>
+                    </tr>
+                    {%endfor%}       
+                </tbody>
+              </table>
+        </div>
+
+        <div class="m-4">
+          <h6 class="">Click here to edit recipes</h6>
+          <button class="btn btn-success" onclick="/recipes/">
+            <a href="/login" class="text-decoration-none text-white "> Login </a>
+          </button>
+        </div>
+{% endblock body %}
